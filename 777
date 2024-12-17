@@ -1,0 +1,208 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace BinaryFileSystem
+{
+    class Program
+    {
+        static void Main()
+        {
+            Console.WriteLine("Добро пожаловать в систему! Выберите роль:");
+            string[] roles = { "Студент", "Преподаватель", "Администратор", "Выход" };
+
+            while (true)
+            {
+                int roleIndex = SelectFromMenu(roles);
+
+                if (roleIndex == roles.Length - 1) // "Выход"
+                {
+                    Console.WriteLine("Выход из программы...");
+                    break;
+                }
+
+                switch (roleIndex)
+                {
+                    case 0:
+                        HandleStudent();
+                        break;
+                    case 1:
+                        HandleTeacher();
+                        break;
+                    case 2:
+                        HandleAdmin();
+                        break;
+                }
+            }
+        }
+
+        static int SelectFromMenu(string[] options)
+        {
+            int index = 0;
+            ConsoleKey key;
+
+            do
+            {
+                Console.Clear();
+                Console.WriteLine("Используйте стрелки для выбора и Enter для подтверждения:");
+
+                for (int i = 0; i < options.Length; i++)
+                {
+                    if (i == index)
+                        Console.WriteLine($"> {options[i]}");
+                    else
+                        Console.WriteLine($"  {options[i]}");
+                }
+
+                key = Console.ReadKey(true).Key;
+
+                if (key == ConsoleKey.UpArrow)
+                    index = (index - 1 + options.Length) % options.Length;
+                else if (key == ConsoleKey.DownArrow)
+                    index = (index + 1) % options.Length;
+
+            } while (key != ConsoleKey.Enter);
+
+            return index;
+        }
+
+        static void HandleStudent()
+        {
+            Console.Clear();
+            Console.WriteLine("Меню студента:");
+            string[] options = { "Просмотреть оценки", "Назад" };
+
+            while (true)
+            {
+                int choice = SelectFromMenu(options);
+                if (choice == options.Length - 1) break; // "Назад"
+
+                switch (choice)
+                {
+                    case 0:
+                        ViewGrades();
+                        break;
+                }
+            }
+        }
+
+        static void HandleTeacher()
+        {
+            Console.Clear();
+            Console.WriteLine("Меню преподавателя:");
+            string[] options = { "Просмотреть журнал", "Выставить оценку", "Изменить оценку", "Удалить оценку", "Назад" };
+
+            while (true)
+            {
+                int choice = SelectFromMenu(options);
+                if (choice == options.Length - 1) break; // "Назад"
+
+                switch (choice)
+                {
+                    case 0:
+                        ViewJournal();
+                        break;
+                    case 1:
+                        AddGrade();
+                        break;
+                    case 2:
+                        EditGrade();
+                        break;
+                    case 3:
+                        DeleteGrade();
+                        break;
+                }
+            }
+        }
+
+        static void HandleAdmin()
+        {
+            Console.Clear();
+            Console.WriteLine("Меню администратора:");
+            string[] options = { "Просмотреть пользователей", "Добавить пользователя", "Удалить пользователя", "Назад" };
+
+            while (true)
+            {
+                int choice = SelectFromMenu(options);
+                if (choice == options.Length - 1) break; // "Назад"
+
+                switch (choice)
+                {
+                    case 0:
+                        ViewUsers();
+                        break;
+                    case 1:
+                        AddUser();
+                        break;
+                    case 2:
+                        DeleteUser();
+                        break;
+                }
+            }
+        }
+
+        static void ViewGrades()
+        {
+            Console.Clear();
+            Console.WriteLine("Оценки студента:");
+            // Логика просмотра оценок
+            Console.ReadKey();
+        }
+
+        static void ViewJournal()
+        {
+            Console.Clear();
+            Console.WriteLine("Журнал преподавателя:");
+            // Логика просмотра журнала
+            Console.ReadKey();
+        }
+
+        static void AddGrade()
+        {
+            Console.Clear();
+            Console.WriteLine("Добавление оценки:");
+            // Логика добавления оценки
+            Console.ReadKey();
+        }
+
+        static void EditGrade()
+        {
+            Console.Clear();
+            Console.WriteLine("Изменение оценки:");
+            // Логика изменения оценки
+            Console.ReadKey();
+        }
+
+        static void DeleteGrade()
+        {
+            Console.Clear();
+            Console.WriteLine("Удаление оценки:");
+            // Логика удаления оценки
+            Console.ReadKey();
+        }
+
+        static void ViewUsers()
+        {
+            Console.Clear();
+            Console.WriteLine("Список пользователей:");
+            // Логика просмотра пользователей
+            Console.ReadKey();
+        }
+
+        static void AddUser()
+        {
+            Console.Clear();
+            Console.WriteLine("Добавление пользователя:");
+            // Логика добавления пользователя
+            Console.ReadKey();
+        }
+
+        static void DeleteUser()
+        {
+            Console.Clear();
+            Console.WriteLine("Удаление пользователя:");
+            // Логика удаления пользователя
+            Console.ReadKey();
+        }
+    }
+}
